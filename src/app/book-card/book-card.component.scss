@@ -1,0 +1,21 @@
+@import '../../scss/variables';
+
+.book-card {
+    width: 600px;
+    background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-light-2);
+    display: flex;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    transition: transform .3s;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.05) translateY(-5px);
+    }
+
+    &__thumbnail img {
+        width: 120px;
+        height: 200px;
+    }
+}
