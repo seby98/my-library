@@ -1,3 +1,4 @@
 <div ngClass="book-container">
+    <div *ngIf="booksList.length === 0">Effettua la ricerca</div>
     <app-book-card *ngFor="let book of booksList" [bookData]="book"></app-book-card>
 </div>

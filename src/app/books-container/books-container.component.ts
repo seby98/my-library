@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BookService } from '../services/book.service';
+import { RemoteBookService } from '../services/remote-book/remote-book.service';
 import { IBookItem } from '../interfaces/i-book-item';
 
 @Component({
@@ -11,14 +11,15 @@ export class BookContainerComponent implements OnInit {
 
   public booksList: IBookItem[];
 
-  constructor(private bookService: BookService) {
+  constructor(private remoteBookService: RemoteBookService) {
     this.booksList = [];
   }
 
   ngOnInit() {
-    this.bookService.getBooks("flower")
+    this.remoteBookService.getBooks("porno")
     .subscribe(
-      (book:IBookItem) => this.booksList.push(book)
+      (book:IBookItem) => this.booksList.push(book),
+      error => console.log(error)
     );
   }
 }
