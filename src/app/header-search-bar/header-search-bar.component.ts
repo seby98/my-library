@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { fromEvent, Observable } from 'rxjs';
-import { filter, map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { filter, map, debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+import { SearchService } from '../services/search/search.service';
 
 @Component({
   selector: 'app-header-search-bar',
@@ -9,20 +10,19 @@ import { filter, map, debounceTime, distinctUntilChanged } from 'rxjs/operators'
 })
 export class HeaderSearchBarComponent implements OnInit {
 
-  public searchObs: Observable<string>;
+  constructor(private searchService: SearchService) {}
 
-  constructor() {
+  ngOnInit() {
     const searchBar = document.querySelector('#searchInput');
     
-    this.searchObs = fromEvent(searchBar, 'input')
+    let searchObs = fromEvent(searchBar, 'input')
       .pipe(
         distinctUntilChanged(),
         debounceTime(500),
         filter((eleEvent: Event) => eleEvent.inputType === "insertText"),
         map((eleEvent: Event) => eleEvent.target.value),
-        filter((value: string) => value.length > 2),
-      )
+        filter((value: string) => value.length > 2)
+      );
+    this.searchService.storeSearchObs(searchObs);
   }
-
-  ngOnInit() { }
 }
