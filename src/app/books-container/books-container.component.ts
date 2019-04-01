@@ -14,7 +14,8 @@ export class BookContainerComponent implements OnInit {
   public firstSearchDone: boolean;
   public searchError: boolean;
 
-  constructor(private remoteBookService: RemoteBookService, private searchService: SearchService) {
+  constructor(private remoteBookService: RemoteBookService,
+              private searchService: SearchService) {
     this.booksList = [];
     this.firstSearchDone = false;
     this.searchError = false;
@@ -31,7 +32,10 @@ export class BookContainerComponent implements OnInit {
             this.booksList.push(book);
             this.searchError = false;
           },
-          error => this.searchError = true
+          () => {
+            this.searchError = true;
+            this.booksList = []
+          }
         )
       }
     );

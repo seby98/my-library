@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 })
 export class SearchService {
 
-  public searchObs: Observable<any>;
+  public searchObs: Observable<string>;
 
   constructor() { }
 

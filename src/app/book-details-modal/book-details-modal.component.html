@@ -1,0 +1,5 @@
+<div mat-dialog-content [ngClass]="{'mat-dialog-content--close': isModalClose}">
+  <h1 mat-dialog-title>Dettaglio libro</h1>
+  <p>{{ bookData | json }}</p>
+  <button (click)="closeModal()">Close</button>
+</div>

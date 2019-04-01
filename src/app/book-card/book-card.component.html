@@ -1,4 +1,4 @@
-<div ngClass="book-card">
+<div ngClass="book-card" (click)="openBookDetailsModal()">
   <div class="book-card--left">
     <div class="book-card__thumbnail">
       <img src={{bookData.thumbnail}} alt={{bookData.title}}>

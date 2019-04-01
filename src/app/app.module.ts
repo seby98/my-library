@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
@@ -8,6 +9,8 @@ import { HeaderSearchBarComponent } from './header-search-bar/header-search-bar.
 import { MainContentComponent } from './main-content/main-content.component';
 import { BookContainerComponent } from './books-container/books-container.component';
 import { BookCardComponent } from './book-card/book-card.component';
+import { BookDetailsModalComponent } from './book-details-modal/book-details-modal.component';
+import { MatDialogModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -16,11 +19,17 @@ import { BookCardComponent } from './book-card/book-card.component';
     HeaderSearchBarComponent,
     MainContentComponent,
     BookContainerComponent,
-    BookCardComponent
+    BookCardComponent,
+    BookDetailsModalComponent
+  ],
+  entryComponents: [
+    BookDetailsModalComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
