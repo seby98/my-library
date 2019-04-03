@@ -13,11 +13,11 @@
     padding: 20px !important;
     border-radius: 5px;
     min-height: 500px;
-    animation: modalOpen .8s;
+    //animation: modalOpen .8s;
     backface-visibility: hidden;
 
     &--close {
-        animation: modalClose .8s;
+        //animation: modalClose .8s;
     }
 }
 

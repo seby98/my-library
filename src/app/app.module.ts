@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
@@ -11,6 +11,7 @@ import { BookContainerComponent } from './books-container/books-container.compon
 import { BookCardComponent } from './book-card/book-card.component';
 import { BookDetailsModalComponent } from './book-details-modal/book-details-modal.component';
 import { MatDialogModule } from '@angular/material';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MatDialogModule } from '@angular/material';
     BrowserModule,
     HttpClientModule,
     MatDialogModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

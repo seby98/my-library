@@ -18,8 +18,8 @@ export class HeaderSearchBarComponent implements OnInit {
     let searchObs = fromEvent(searchBar, 'input')
       .pipe(
         debounceTime(500),
-        filter((eleEvent: Event) => eleEvent.inputType === "insertText"),
-        map((eleEvent: Event) => eleEvent.target.value),
+        filter((eleEvent: any) => eleEvent.inputType === "insertText"),
+        map((eleEvent: any) => eleEvent.target.value),
         filter((value: string) => value.length > 2)
       );
     this.searchService.storeSearchObs(searchObs);
