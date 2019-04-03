@@ -1,11 +1,15 @@
 /*----- MODAL -----*/
 
+.mat-dialog-title {
+    margin: 0 !important;
+}
+
 .mat-dialog-container {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #0000008c;
     padding: 50px 100px !important;
+    background-color: transparent;
 }
 
 .mat-dialog-content {
@@ -13,32 +17,52 @@
     padding: 20px !important;
     border-radius: 5px;
     min-height: 500px;
-    //animation: modalOpen .8s;
-    backface-visibility: hidden;
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto !important;
+    overflow: overlay !important;
+}
 
-    &--close {
-        //animation: modalClose .8s;
+.modal {
+
+    &__overlay {
+        background-color: #00000091;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+
+    &__button-close {
+        position: absolute;
+        top: 3px;
+        right: 10px;
+        border: 0;
+        background-color: unset;
+        color: $color-grey-dark-2;
+        font-size: 30px;
+        outline: none;
+        transition: transform .2s;
+        backface-visibility: hidden;
+
+        &:hover {
+            transform: scale(1.3);
+        }
+
+        &:active {
+            transform: scale(1);
+        }
     }
 }
 
-@keyframes modalOpen {
-    0%   {
-        opacity: 0;
-        transform: scale(.2);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
+/*----- TAB -----*/
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: #475fd6;
+    width: 120px !important;
 }
 
-@keyframes modalClose {
-    0%   {
-        opacity: 1;
-        transform: scale(1);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(.2);
-    }
+.mat-tab-label {
+    min-width: 120px !important;
 }

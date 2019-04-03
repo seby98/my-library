@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RemoteBookService } from '../services/remote-book/remote-book.service';
-import { IBookItem } from '../interfaces/i-book-item';
+import { BookItem } from '../interfaces/book-item';
 import { SearchService } from '../services/search/search.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { SearchService } from '../services/search/search.service';
 })
 export class BookContainerComponent implements OnInit {
 
-  public booksList: IBookItem[];
+  public booksList: BookItem[];
   public firstSearchDone: boolean;
   public searchError: boolean;
 
@@ -28,7 +28,7 @@ export class BookContainerComponent implements OnInit {
         this.firstSearchDone = true;
         this.remoteBookService.getBooks(value)
         .subscribe(
-          (book:IBookItem) => {
+          (book: BookItem) => {
             this.booksList.push(book);
             this.searchError = false;
           },

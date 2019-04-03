@@ -1,8 +1,15 @@
-<div ngClass="book-container">
+<div class="book-container">
     <div *ngIf="booksList.length === 0 && !firstSearchDone">Effettua la ricerca</div>
     <div *ngIf="searchError">Ooops qualcosa è andato storto... riprova...</div>
     <div class="load" *ngIf="booksList.length === 0 && firstSearchDone && !searchError">
         <img src="assets/gif/load.gif" alt="Loading">
     </div>
-    <app-book-card *ngFor="let book of booksList" [bookData]="book"></app-book-card>
+    <mat-grid-list cols="2" rowHeight="250px" gutterSize="10px">
+        <mat-grid-tile *ngFor="let book of booksList">
+            <app-book-card [bookData]="book"></app-book-card>
+        </mat-grid-tile>
+    </mat-grid-list>
 </div>
+
+
+

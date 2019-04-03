@@ -1,57 +1,45 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { RemoteBookService } from '../services/remote-book/remote-book.service';
-import { trigger, state, style, animate, transition } from '@angular/animations'
+import { GoogleBookResponse } from '../interfaces/google-book-response';
+import { VolumeInfo, VolumeInfo_ImageLinks, VolumeInfo_IndustryIdentifier } from '../interfaces/google-volume-info';
 
 @Component({
   selector: 'app-book-details-modal',
   templateUrl: './book-details-modal.component.html',
-  styleUrls: ['./book-details-modal.component.scss'],
-  animations: [
-    trigger('openClose', [
-      state('close', style({
-        opacity: 0,
-        transform: 'scale(0.2)'
-      })),
-      state('open', style({
-        opacity: 1,
-        transform: 'scale(1)'
-      })),
-      transition('open=>close', [animate('10000ms')]),
-      transition('close=>open', [animate('2000ms')])
-    ])
-  ]
+  styleUrls: ['./book-details-modal.component.scss']
 })
 export class BookDetailsModalComponent implements OnInit {
 
-  public bookData;
-  //public isModalClose: boolean;
-  public currentState: string;
+  public bookDetails: VolumeInfo;
+  public retriveRemoteInfoComplete: boolean;
 
   constructor(
     private remoteBookService: RemoteBookService,
     private modalRef: MatDialogRef<BookDetailsModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data
   ) {
-    //this.isModalClose = false;
-    this.currentState = "open";
+    this.retriveRemoteInfoComplete = false;
+
+    this.bookDetails = {} as VolumeInfo;
+    this.bookDetails.imageLinks = {} as VolumeInfo_ImageLinks;
+    this.bookDetails.authors = [];
+    this.bookDetails.categories = [] as string[];
+    this.bookDetails.industryIdentifiers = [] as VolumeInfo_IndustryIdentifier[];
   }
 
   ngOnInit() {
     this.remoteBookService.getBook(this.data.bookID).subscribe(
-      bookData => this.bookData = bookData
+      (res: GoogleBookResponse) => {
+        this.bookDetails = res.volumeInfo;
+        this.retriveRemoteInfoComplete = true;
+        console.log(res);
+      },
+      error => console.log(error)
     );
   }
 
   closeModal() {
-    //this.isModalClose = !this.isModalClose;
-    /*setTimeout(
-      () => this.modalRef.close(),
-      700
-    );*/
-    this.currentState = "close";
-    this.modalRef.close()
-    
+    this.modalRef.close();
   }
-
 }

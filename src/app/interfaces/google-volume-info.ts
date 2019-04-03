@@ -1,41 +1,45 @@
-export interface IVolumeInfo {  
+export interface VolumeInfo {  
     title: string
     authors: string[]
     publisher: string
     publishedDate: string
     description: string
-    industryIdentifiers: IVolumeInfo_IndustryIdentifier[]
-    readingModes: IVolumeInfo_ReadingModes
+    industryIdentifiers: VolumeInfo_IndustryIdentifier[]
+    readingModes: VolumeInfo_ReadingModes
     pageCount: number
+    printedPageCount?: number
+    dimension?: any
     printType: string
-    categories: string[]
+    categories?: string[]
     maturityRating: string
     allowAnonLogging: boolean
     contentVersion: string
-    panelizationSummary: IVolumeInfo_PanelizationSummary
-    imageLinks: IVolumeInfo_ImageLinks
+    panelizationSummary?: VolumeInfo_PanelizationSummary
+    imageLinks: VolumeInfo_ImageLinks
     language: string,
     previewLink: string
     infoLink: string
     canonicalVolumeLink: string
 }
 
-interface IVolumeInfo_IndustryIdentifier {
+export interface VolumeInfo_IndustryIdentifier {
     type: string
     identifier: string
 }
 
-interface IVolumeInfo_ReadingModes {  
+interface VolumeInfo_ReadingModes {  
     text: boolean
     image: boolean
 }
 
-interface IVolumeInfo_PanelizationSummary {
+interface VolumeInfo_PanelizationSummary {
     containsEpubBubbles: boolean
     containsImageBubbles: boolean
 }
 
-interface IVolumeInfo_ImageLinks {
+export interface VolumeInfo_ImageLinks {
     smallThumbnail: string
     thumbnail: string
+    small?: string
+    medium?: string
 }

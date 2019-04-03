@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IBookItem } from '../interfaces/i-book-item';
+import { BookItem } from '../interfaces/book-item';
 import { MatDialog } from '@angular/material';
 import { BookDetailsModalComponent } from '../book-details-modal/book-details-modal.component';
 
@@ -10,7 +10,7 @@ import { BookDetailsModalComponent } from '../book-details-modal/book-details-mo
 })
 export class BookCardComponent implements OnInit {
 
-  @Input() bookData: IBookItem;
+  @Input() bookData: BookItem;
 
   constructor(private modal: MatDialog) { }
 

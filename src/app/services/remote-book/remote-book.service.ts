@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, from } from 'rxjs';
-import { map, catchError, tap, switchMap } from 'rxjs/operators';
-import { IGoogleBooksResponse_Item, IGoogleBooksResponse } from '../../interfaces/i-google-books-response';
-import { IBookItem } from '../../interfaces/i-book-item';
+import { map, switchMap } from 'rxjs/operators';
+import { GoogleBooksResponse_Item, GoogleBooksResponse } from '../../interfaces/google-books-response';
+import { BookItem } from '../../interfaces/book-item';
 
 @Injectable({
   providedIn: 'root'
@@ -14,11 +14,11 @@ export class RemoteBookService {
 
   constructor(private http: HttpClient) { }
 
-  public getBooks(query: string): Observable<IBookItem> {
+  public getBooks(query: string): Observable<BookItem> {
     return this.http.get(this.getBooksURI + (query ? "?q=" + query : "")).pipe(
-      switchMap((res: IGoogleBooksResponse) => from(res.items)),
-      map((item: IGoogleBooksResponse_Item) => {
-        const book: IBookItem = {
+      switchMap((res: GoogleBooksResponse) => from(res.items)),
+      map((item: GoogleBooksResponse_Item) => {
+        const book: BookItem = {
           id: item.id,
           title: item.volumeInfo.title,
           thumbnail: item.volumeInfo.imageLinks.thumbnail
@@ -29,6 +29,6 @@ export class RemoteBookService {
   }
 
   public getBook(bookID: string): Observable<any> {
-    return this.http.get(this.getBooksURI + bookID)
+    return this.http.get(this.getBooksURI + bookID);
   }
 }
