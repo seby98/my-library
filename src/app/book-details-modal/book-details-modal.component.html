@@ -5,41 +5,47 @@
   <div class="book-detail">
     <div class="book-detail__header">
       <div class="book-card__thumbnail">
-        <img [src]="bookDetails.imageLinks.thumbnail" [alt]="bookDetails.title">
+        <img [src]="templateBookDetails.thumbnail" [alt]="templateBookDetails.title">
       </div>
       <div class="book-detail__title">
-        <h1 mat-dialog-title class="book-detail__title--title">{{ bookDetails.title }}</h1>
-        <h2 class="book-detail__title--authors">
-          <span class="string-loop" *ngFor="let author of bookDetails.authors">{{ author }}</span>
-        </h2>
+        <h1 mat-dialog-title class="book-detail__title--title">{{ templateBookDetails.title }}</h1>
+        <h2 class="book-detail__title--authors">{{ templateBookDetails.authors }}</h2>
       </div>
     </div>
     <mat-tab-group>
       <mat-tab label="Dettagli">
         <div class="book-detail__information-box">
           <ul class="book-detail__information-list">
-            <li *ngIf="bookDetails.authors.length" class="book-detail__information-list-item">
+            <li *ngIf="templateBookDetails.authors" class="book-detail__information-list-item">
               <span class="book-detail__information-list-item--label">Autori: </span>
-              <span class="book-detail__information-list-item--content">
-                <span class="string-loop" *ngFor="let author of bookDetails.authors">{{ author }}</span>
-              </span>
+              <span class="book-detail__information-list-item--content">{{ templateBookDetails.authors }}</span>
             </li>
-            <li *ngIf="bookDetails.categories.length" class="book-detail__information-list-item">
+            <li *ngIf="templateBookDetails.categories" class="book-detail__information-list-item">
               <span class="book-detail__information-list-item--label">Categorie: </span>
-              <span class="book-detail__information-list-item--content">
-                <span class="string-loop" *ngFor="let category of bookDetails.categories">{{ category }}</span>
-              </span>
+              <span class="book-detail__information-list-item--content">{{ templateBookDetails.categories }}</span>
             </li>
-            <li *ngIf="bookDetails.industryIdentifiers[1].identifier" class="book-detail__information-list-item">
+            <li *ngIf="templateBookDetails.isbn" class="book-detail__information-list-item">
               <span class="book-detail__information-list-item--label">ISBN: </span>
-              <span class="book-detail__information-list-item--content">{{ bookDetails.industryIdentifiers[1].identifier }}</span>
+              <span class="book-detail__information-list-item--content">{{ templateBookDetails.isbn }}</span>
+            </li>
+            <li *ngIf="templateBookDetails.publisher" class="book-detail__information-list-item">
+              <span class="book-detail__information-list-item--label">Editore: </span>
+              <span class="book-detail__information-list-item--content">{{ templateBookDetails.publisher }}</span>
+            </li>
+            <li *ngIf="templateBookDetails.publishedDate" class="book-detail__information-list-item">
+              <span class="book-detail__information-list-item--label">Data di pubblicazione: </span>
+              <span class="book-detail__information-list-item--content">{{ templateBookDetails.publishedDate }}</span>
+            </li>
+            <li *ngIf="templateBookDetails.pageCount" class="book-detail__information-list-item">
+              <span class="book-detail__information-list-item--label">Numero di pagine: </span>
+              <span class="book-detail__information-list-item--content">{{ templateBookDetails.pageCount }}</span>
             </li>
           </ul>
         </div>
       </mat-tab>
       <mat-tab label="Descrizione">
         <div class="book-detail__description">
-          <p>{{ bookDetails.description ? bookDetails.description : 'Nessuna descrizione disponibile' }}</p>
+          <p>{{ templateBookDetails.description ? templateBookDetails.description : 'Nessuna descrizione disponibile' }}</p>
         </div>
       </mat-tab>
     </mat-tab-group>

@@ -22,10 +22,27 @@
         padding: 10px;
         font-weight: 100;
     }
-}
 
-.string-loop:not(:last-child)::after {
-    content: " - ";
+    &__information-box {
+        padding: 10px;
+    }
+
+    &__information-list-item {
+
+        &:not(:last-child) {
+            margin-bottom: 10px;
+        }
+
+        &--content {
+            font-size: 16px;
+            color: $color-grey-dark-2;
+        }
+
+        &--label {
+            font-size: 16px;
+            color: $color-grey-dark-1;
+        }
+    }
 }
 
 .preload {
