@@ -1,4 +1,9 @@
-<div class="book-container">
+<div class="book-container"
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="50"
+    (scrolled)="loadOtherBooks()"
+>
     <div *ngIf="booksList.length === 0 && !firstSearchDone">Effettua la ricerca</div>
     <div *ngIf="searchError">Ooops qualcosa è andato storto... riprova...</div>
     <div class="load" *ngIf="booksList.length === 0 && firstSearchDone && !searchError">

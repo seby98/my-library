@@ -14,8 +14,8 @@ export class RemoteBookService {
 
   constructor(private http: HttpClient) { }
 
-  public getBooks(query: string): Observable<BookItem> {
-    return this.http.get(this.getBooksURI + (query ? "?q=" + query : "")).pipe(
+  public getBooks(query: string, startIndex: number): Observable<BookItem> {
+    return this.http.get(this.getBooksURI + "?q=" + query + "&startIndex=" + startIndex).pipe(
       switchMap((res: GoogleBooksResponse) => from(res.items)),
       map((item: GoogleBooksResponse_Item) => {
         const book: BookItem = {
