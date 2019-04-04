@@ -1,6 +1,6 @@
-<form action="#" ngClass="search-bar">
-  <input type="text" placeholder="Search books" ngClass="search-bar__input" id="searchInput">
-  <svg ngClass="search-bar__icon">
+<form action="#" class="search-bar" [formGroup]="searchForm">
+  <input type="text" placeholder="Search books" class="search-bar__input" id="searchInput" formControlName="searchInput">
+  <svg class="search-bar__icon">
     <use xlink:href="assets/sprites/sprite-1.svg#icon-magnifying-glass"></use>
   </svg>
 </form>
