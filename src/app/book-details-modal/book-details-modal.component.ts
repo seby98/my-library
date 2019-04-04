@@ -43,8 +43,8 @@ export class BookDetailsModalComponent implements OnInit {
           title: res.volumeInfo.title,
           thumbnail: res.volumeInfo.imageLinks.thumbnail,
           description: res.volumeInfo.description,
-          authors: res.volumeInfo.authors ? this.getStringToArray(res.volumeInfo.authors) : "",
-          categories: res.volumeInfo.categories ? this.getStringToArray(res.volumeInfo.categories) : "",
+          authors: res.volumeInfo.authors ? this.getStringFromArray(res.volumeInfo.authors) : "",
+          categories: res.volumeInfo.categories ? this.getStringFromArray(res.volumeInfo.categories) : "",
           isbn: res.volumeInfo.industryIdentifiers ? this.getIsbn13(res.volumeInfo.industryIdentifiers) : "",
           publisher: res.volumeInfo.publisher,
           publishedDate: res.volumeInfo.publishedDate,
@@ -66,7 +66,7 @@ export class BookDetailsModalComponent implements OnInit {
     this.modalRef.close();
   }
 
-  getStringToArray(_array: string[]): string {
+  getStringFromArray(_array: string[]): string {
     let _string: string = "";
     _array.forEach((strItem: string) => {
       _string = _string + strItem + " - ";
